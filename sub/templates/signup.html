@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sing up form</title>
+</head>
+
+<body>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for i in form %}
+        {{i.label_tag}}{{i}} {{i.errors|striptags}}<br><br>
+        {% endfor %}
+        <input type="submit" value="submit">
+    </form>
+    {% if messages %}
+    {% for i in messages %}
+    <span {% if i.tags %} class="{{i.tags}}" {% endif %}>
+        {{i}}
+    </span>
+
+    {% endfor %}
+
+    {% endif %}
+    <a href="{% url 'login' %}">login</a>
+</body>
+
+</html>
